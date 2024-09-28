@@ -1,0 +1,11 @@
+groups:
+  - name: weather_alerts
+    rules:
+      - alert: TemperatureOutOfRange
+        expr: weather_temperature_celsius < 0 or weather_temperature_celsius > 15
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Température en dehors de la plage acceptable"
+          description: "La température actuelle est {{ $value }}°C. Elle est inférieure à 0°C ou supérieure à 15°C."
